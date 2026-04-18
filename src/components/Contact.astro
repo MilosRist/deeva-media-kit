@@ -1,0 +1,106 @@
+---
+import Marquee from './Marquee.astro';
+---
+
+<Marquee text="LET'S WORK TOGETHER ↓↓ LET'S WORK TOGETHER ↓↓" />
+
+<section class="contact">
+    <div class="contact-content">
+        <h2 class="contact-title">Let's<br>Connect</h2>
+        
+        <div class="contact-info-box">
+            <div class="info-row">
+                <span class="info-label">EMAIL</span>
+                <a href="mailto:deevaandfood@gmail.com" class="info-value">deevaandfood@gmail.com</a>
+            </div>
+            <div class="info-row">
+                <span class="info-label">TELEPHONE</span>
+                <a href="tel:+14382236335" class="info-value">+1 438-223-6335</a>
+            </div>
+            <div class="info-row">
+                <span class="info-label">WEBSITE</span>
+                <a href="https://www.deevaandfood.com" target="_blank" class="info-value">www.deevaandfood.com</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .contact {
+        background-color: var(--clr-red);
+        padding: 100px 5%;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Decorative background star */
+    .contact::after {
+        content: '★';
+        position: absolute;
+        font-size: 40rem;
+        color: rgba(0,0,0,0.1);
+        right: -10%;
+        bottom: -20%;
+        pointer-events: none;
+    }
+
+    .contact-content {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .contact-title {
+        font-family: var(--font-display);
+        font-size: clamp(4rem, 10vw, 10rem);
+        line-height: 1;
+        text-transform: uppercase;
+        color: transparent;
+        -webkit-text-stroke: 4px var(--clr-gold);
+        margin-bottom: 60px;
+    }
+
+    .contact-info-box {
+        background: var(--clr-blue);
+        border: 5px solid var(--clr-gold);
+        padding: 40px;
+        box-shadow: 20px 20px 0px var(--clr-black);
+    }
+
+    .info-row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+        text-align: left;
+    }
+
+    .info-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .info-label {
+        font-family: var(--font-display);
+        color: var(--clr-orange);
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+
+    .info-value {
+        font-family: var(--font-body);
+        color: var(--clr-gold);
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .info-value:hover {
+        color: var(--clr-white);
+    }
+</style>

@@ -1,0 +1,112 @@
+---
+import Marquee from './Marquee.astro';
+---
+
+<Marquee text="THE NUMBERS ↓↓ THE NUMBERS ↓↓ THE NUMBERS ↓↓" />
+
+<section class="stats">
+    <h2 class="stats-title">Key<br>Analytics</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-number">260K+</span>
+            <span class="stat-label">TikTok Followers</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">15K+</span>
+            <span class="stat-label">Instagram Followers</span>
+        </div>
+        <div class="stat-card accent">
+            <span class="stat-number">2.3M</span>
+            <span class="stat-label">Monthly Views</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">5%+</span>
+            <span class="stat-label">Engagement Rate</span>
+        </div>
+        <div class="stat-card accent">
+            <span class="stat-number">200M+</span>
+            <span class="stat-label">Total Views</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">43.9%</span>
+            <span class="stat-label">Canadian Viewers</span>
+        </div>
+        <div class="stat-card accent">
+            <span class="stat-number">18-24</span>
+            <span class="stat-label">Top Demographic (37%)</span>
+        </div>
+        <div class="stat-card accent">
+            <span class="stat-number">9K+</span>
+            <span class="stat-label">Monthly Blog Page Views</span>
+        </div>
+    </div>
+</section>
+
+<style>
+    .stats {
+        background-color: var(--clr-blue);
+        padding: 100px 5%;
+        text-align: center;
+        position: relative;
+    }
+
+    .stats-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 10vw, 10rem);
+        line-height: 1;
+        text-transform: uppercase;
+        color: transparent;
+        -webkit-text-stroke: 3px var(--clr-gold);
+        margin-bottom: 60px;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .stat-card {
+        background: var(--clr-red);
+        padding: 40px 20px;
+        border: 4px solid var(--clr-gold);
+        box-shadow: 10px 10px 0px var(--clr-orange);
+        transition: transform 0.2s ease;
+    }
+
+    .stat-card:hover {
+        transform: translate(-5px, -5px);
+        box-shadow: 15px 15px 0px var(--clr-orange);
+    }
+
+    .stat-card.accent {
+        background: var(--clr-orange);
+        border-color: var(--clr-red);
+        box-shadow: 10px 10px 0px var(--clr-gold);
+    }
+
+    .stat-card.accent:hover {
+        box-shadow: 15px 15px 0px var(--clr-gold);
+    }
+
+    .stat-number {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 3.5rem;
+        color: var(--clr-gold);
+        line-height: 1;
+        margin-bottom: 10px;
+    }
+
+    .stat-label {
+        font-family: var(--font-body);
+        font-weight: 700;
+        color: var(--clr-white);
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+</style>

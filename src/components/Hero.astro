@@ -1,0 +1,187 @@
+---
+import Marquee from './Marquee.astro';
+---
+
+<Marquee text="DEEVA WAZIR • MEDIA KIT 2026 • CONTENT CREATOR & BLOGGER •" />
+
+<section class="hero">
+    <!-- The Red Overlay (z-index: 1) -->
+    
+    <!-- The Scattered Images (z-index: 2) -->
+    <img class="hero-scatter-img" src="/deeva-1.jpeg" alt="Deeva 1" />
+    <img class="hero-scatter-img" src="/deeva-2.jpeg" alt="Deeva 2" />
+    <img class="hero-scatter-img" src="/deeva-3.jpeg" alt="Deeva 3" />
+    <img class="hero-scatter-img" src="/deeva-4.jpeg" alt="Deeva 4" />
+    <img class="hero-scatter-img" src="/deeva-5.jpeg" alt="Deeva 5" />
+
+    <!-- Floating Stars (z-index: 2) -->
+    <div class="star star-1"></div>
+    <div class="star star-2"></div>
+    
+    <!-- The Text (z-index: 3) -->
+    <div class="hero-content">
+        <h1 class="hero-name">Deeva</h1>
+        <h2 class="hero-last-name">Wazir</h2>
+        <div class="hero-tagline">FOOD • TRAVEL • BEAUTY • LIFESTYLE</div>
+    </div>
+</section>
+
+<Marquee text="ABOUT ME ↓↓ ABOUT ME ↓↓ ABOUT ME ↓↓" bgColor="var(--clr-blue)" textColor="var(--clr-gold)" borderColor="var(--clr-gold)" />
+
+<style>
+    .hero {
+        height: 100vh;
+        background: url('https://images.unsplash.com/photo-1607077640788-8e1208b74f7c?q=80&w=2574&auto=format&fit=crop') center/cover no-repeat fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        text-align: center;
+        overflow: hidden; 
+    }
+
+    /* 1. Background Color Layer */
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(214, 40, 40, 0.85); 
+        z-index: 1;
+    }
+
+    /* 2. Scattered Images Layer */
+    .hero-scatter-img {
+        position: absolute;
+        width: 20vw; 
+        max-width: 300px;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        border: 5px solid var(--clr-gold);
+        box-shadow: 12px 12px 0px var(--clr-orange);
+        z-index: 2; 
+        opacity: 0; /* Hidden initially by JS */
+        will-change: transform, opacity; 
+    }
+
+    /* 3. Text Layer */
+    .hero-content {
+        position: relative;
+        z-index: 3; 
+        max-width: 1200px;
+        padding: 0 20px;
+    }
+
+    .hero-name {
+        font-family: var(--font-display);
+        font-size: clamp(5rem, 15vw, 14rem);
+        line-height: 0.85;
+        -webkit-text-stroke: 4px var(--clr-gold);
+        color: transparent;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        mix-blend-mode: difference; 
+        filter: brightness(2); 
+    }
+
+    .hero-last-name {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 6vw, 5rem);
+        color: var(--clr-gold);
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        margin-bottom: 30px;
+        text-shadow: 3px 3px 0px var(--clr-blue); 
+    }
+
+    .hero-tagline {
+        display: inline-block;
+        background: var(--clr-cream);
+        color: var(--clr-blue);
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        padding: 10px 30px;
+        border: 3px solid var(--clr-orange);
+        transform: rotate(-2deg);
+        box-shadow: 8px 8px 0px var(--clr-blue);
+    }
+
+    .star {
+        position: absolute;
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        z-index: 2;
+    }
+    .star-1 { top: 15%; left: 10%; transform: rotate(15deg); width: 80px; height: 80px; background: var(--clr-orange); }
+    .star-2 { bottom: 20%; right: 8%; transform: rotate(-20deg); width: 120px; height: 120px; background: var(--clr-red); }
+
+    @media (max-width: 768px) {
+        .hero-scatter-img {
+            width: 40vw;
+            max-width: 180px;
+        }
+    }
+</style>
+
+<script>
+    import gsap from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const images = Array.from(document.querySelectorAll<HTMLElement>('.hero-scatter-img'));
+
+    if (images.length > 0) {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: '+=1500',     
+                scrub: 1,          
+                pin: true          
+            }
+        });
+
+        // Pre-defined scattered layout positions (x, y in percentages) 
+        // and specific sides to fly in from. This guarantees no overlaps!
+        const layoutMap = [
+            { finalX: 8,  finalY: 12, rotation: -12, startFrom: 'left' },   // Top Left
+            { finalX: 78, finalY: 8,  rotation: 15,  startFrom: 'right' },  // Top Right
+            { finalX: 12, finalY: 52, rotation: -8,  startFrom: 'bottom' }, // Middle Left
+            { finalX: 82, finalY: 48, rotation: 10,  startFrom: 'top' },    // Middle Right
+            { finalX: 48, finalY: 78, rotation: -15, startFrom: 'left' }    // Bottom Center
+        ];
+
+        // Helper function to determine off-screen starting coordinates
+        const getStartOffset = (side: string) => {
+            if (side === 'left') return { x: -150, y: 0 };
+            if (side === 'right') return { x: 150, y: 0 };
+            if (side === 'top') return { x: 0, y: -150 };
+            return { x: 0, y: 150 }; // bottom
+        };
+
+        images.forEach((img, index) => {
+            // Get the specific layout instructions for this specific image
+            const pos = layoutMap[index];
+            const offset = getStartOffset(pos.startFrom);
+
+            // 1. Place image at its FINAL resting spot, but pushed off-screen by the offset
+            gsap.set(img, { 
+                left: `${pos.finalX}%`, 
+                top: `${pos.finalY}%`, 
+                xPercent: -50 + offset.x, 
+                yPercent: -50 + offset.y,
+                rotation: pos.rotation
+            });
+
+            // 2. Animate TO the final resting spot (removing the offset)
+            tl.to(img, {
+                xPercent: -50,
+                yPercent: -50,
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: 'power3.out'
+            }, index * 0.2); 
+        });
+    }
+</script>

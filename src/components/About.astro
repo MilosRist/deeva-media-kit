@@ -1,0 +1,126 @@
+---
+---
+
+<section class="about">
+    <div class="decoration">!</div>
+
+    <div class="about-left">
+        <h2 class="section-title">About<br>Me</h2>
+        
+        <div class="text-box">
+            <h3 class="box-title">Content Creation</h3>
+            <p>Hi, I’m Deeva! I’m a food, travel, and lifestyle content creator based in Canada, and a law student with a deep love for storytelling.</p>
+            <p>What began as a passion project quickly grew into a community that values honest, relatable content. I’ve partnered with both global brands and small businesses, always with the same goal: to share experiences in a way that feels raw, real, and true to life.</p>
+        </div>
+
+        <div class="text-box secondary-box">
+            <h3 class="box-title">Blog</h3>
+            <p>My blog aims to take readers on a journey through flavors, cultures, and hidden gems. From "Asian pantry essentials" to "Best Cities to Visit in Italy," I blend personal experiences with expert recommendations, making every meal and trip unforgettable.</p>
+        </div>
+    </div>
+
+    <div class="about-right">
+        <img src="/deeva-pfp.jpeg" alt="Photo of Deeva" class="creator-image-container">
+    </div>
+</section>
+
+<style>
+    .about {
+        background-color: var(--clr-cream);
+        min-height: 100vh;
+        padding: 100px 5%;
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 60px;
+        align-items: start;
+        color: var(--clr-blue);
+    }
+
+    .decoration {
+        position: absolute;
+        font-family: var(--font-display);
+        font-size: 20rem;
+        color: rgba(0, 48, 73, 0.08);
+        right: -50px;
+        bottom: -100px;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .about-left {
+        position: relative;
+        z-index: 1;
+    }
+
+    .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 7.5vw, 7.5rem);
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--clr-blue);
+        -webkit-text-stroke: 3px var(--clr-orange);
+        margin-bottom: 40px;
+    }
+
+    .text-box {
+        background-color: var(--clr-white);
+        color: var(--clr-blue);
+        padding: 30px;
+        border: 4px solid var(--clr-red);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        font-weight: 700;
+        position: relative;
+        box-shadow: 15px 15px 0px var(--clr-orange);
+        margin-bottom: 40px;
+    }
+
+    .secondary-box {
+        border-color: var(--clr-orange);
+        box-shadow: 15px 15px 0px var(--clr-red);
+    }
+
+    .box-title {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        color: var(--clr-red);
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    .secondary-box .box-title {
+        color: var(--clr-orange);
+    }
+
+    .about-right {
+        position: relative;
+        margin-top: 60px;
+        z-index: 1;
+    }
+
+    .creator-image-container {
+        width: 100%;
+        aspect-ratio: 3/4;
+        background-color: var(--clr-red);
+        border: 5px solid var(--clr-gold);
+        position: sticky;
+        top: 100px;
+    }
+
+    @media (max-width: 900px) {
+        .about {
+            grid-template-columns: 1fr;
+            padding: 60px 5%;
+        }
+        .about-right {
+            order: -1; 
+        }
+        .creator-image-container {
+            max-width: 350px;
+            margin: 0 auto;
+            position: static;
+        }
+    }
+</style>
